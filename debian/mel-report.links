@@ -1,0 +1,2 @@
+usr/lib/systemd/user/ubuntu-report.path etc/systemd/user/default.target.wants/ubuntu-report.path
+usr/bin/ubuntu-report usr/bin/mel-report

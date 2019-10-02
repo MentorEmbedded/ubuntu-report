@@ -72,3 +72,18 @@ Description: Report hardware and other collected metrics - source
  .
  This package provides Golang sources and API to use sysmetrics collection
  and report functionality.
+
+Package: mel-report
+Architecture: any
+Built-Using: ${misc:Built-Using},
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+Description: Report hardware and other collected metrics
+ The tool will show you what is going to be reported and ask for your
+ acknowledgement before uploading it. This information can't be used to
+ identify a single machine and is presented before being sent to the server.
+ .
+ This package contains the command line tool.
+ .
+ This package is modified to be specific to MEL.
+
