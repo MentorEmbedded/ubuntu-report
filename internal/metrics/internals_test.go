@@ -537,6 +537,33 @@ func TestGetLanguage(t *testing.T) {
 
 }
 
+func TestGetMELFeatures(t *testing.T) {
+	t.Parallel()
+
+	testCases := []struct {
+		name string
+		root string
+	}{
+		{"regular", "testdata/good"},
+		{"empty file", "testdata/empty"},
+		{"doesn't exist", "testdata/none"},
+		{"garbage content", "testdata/garbage"},
+	}
+	for _, tc := range testCases {
+		tc := tc // capture range variable for parallel execution
+		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+			a := helper.Asserter{T: t}
+
+			m := newTestMetrics(t, WithRootAt(tc.root))
+			got := []byte(m.installerInfo())
+			want := helper.LoadOrUpdateGolden(t, path.Join(m.root, "gold", "intallerInfo"), got, *Update)
+
+			a.Equal(got, want)
+		})
+	}
+}
+
 func newTestMetrics(t *testing.T, fixtures ...func(m *Metrics) error) Metrics {
 	t.Helper()
 	m, err := New(fixtures...)

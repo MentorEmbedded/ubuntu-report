@@ -170,6 +170,14 @@ func (m Metrics) upgradeInfo() json.RawMessage {
 	return getAndValidateJSONFromFile(filepath.Join(m.root, upgradeLogsPath), "upgrade")
 }
 
+func (m Metrics) getMELFeatures() []string {
+	v, err := getFromFileTrimmed(filepath.Join(m.root, "etc/mel-os/features"))
+	if err != nil {
+		return nil
+	}
+	return strings.Split(string(v), "\n")
+}
+
 func matchFromFile(p, regex string, notFoundOk bool) (string, error) {
 	f, err := os.Open(p)
 	if err != nil {

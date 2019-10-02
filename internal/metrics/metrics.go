@@ -151,6 +151,8 @@ func (m Metrics) Collect() ([]byte, error) {
 	r.Install = m.installerInfo()
 	r.Upgrade = m.upgradeInfo()
 
+	r.MELFeatures = m.getMELFeatures()
+
 	d, err := json.Marshal(r)
 	return d, errors.Wrapf(err, "can't be converted to a valid json")
 }

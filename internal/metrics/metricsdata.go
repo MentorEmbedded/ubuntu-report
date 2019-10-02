@@ -34,6 +34,7 @@ type metrics struct {
 
 	Install json.RawMessage `json:",omitempty"`
 	Upgrade json.RawMessage `json:",omitempty"`
+	MELFeatures []string `json:",omitempty"`
 }
 
 type gpuInfo struct {

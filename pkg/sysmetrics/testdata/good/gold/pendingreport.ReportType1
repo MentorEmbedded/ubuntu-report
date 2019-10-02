@@ -41,5 +41,8 @@
     "Stages": {
       "1337": "done"
     }
-  }
+  },
+  "MELFeatures": [
+    "selinux"
+  ]
 }
