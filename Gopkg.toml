@@ -4,5 +4,5 @@
 
 [prune]
   non-go = true
-  go-tests = true
+  go-tests = false
   unused-packages = true

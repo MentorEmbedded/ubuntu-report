@@ -99,7 +99,7 @@ func metricsCollectAndSend(m metrics.Metrics, r ReportType, alwaysReport bool, b
 		validAnswer := false
 		scanner := bufio.NewScanner(in)
 		for validAnswer != true {
-			fmt.Fprintf(out, "Do you agree to report this? [y (send metrics)/n (send opt out message)/Q (quit)] ")
+			fmt.Fprintf(out, "Do you agree to report this (dest: %s)? [y (send metrics)/n (send opt out message)/Q (quit)] ", baseURL)
 			if !scanner.Scan() {
 				log.Info("programm interrupted")
 				return nil

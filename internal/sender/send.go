@@ -13,7 +13,7 @@ import (
 )
 
 // BaseURL server to send metrics to
-const BaseURL = "https://metrics.ubuntu.com"
+const BaseURL = "https://localhost:4299"
 
 // Send to url the json data
 func Send(url string, data []byte) error {
