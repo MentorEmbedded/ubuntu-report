@@ -35,6 +35,7 @@ func generateRootCmd() *cobra.Command {
 
 	var rootCmd = &cobra.Command{
 		Use:   "ubuntu-report",
+		Aliases: []string{"mel-report"},
 		Short: "Report metrics from your system, install and upgrades",
 		Long: `This tool will collect and report metrics from current hardware, ` +
 			`partition and session information.` + "\n" +
@@ -51,9 +52,18 @@ func generateRootCmd() *cobra.Command {
 			}
 		},
 		Run: func(cmd *cobra.Command, args []string) {
-			if err := sysmetrics.CollectAndSend(sysmetrics.ReportInteractive, flagForce, flagServerURL); err != nil {
-				log.Errorf(utils.ErrFormat, err)
-				os.Exit(1)
+			if (os.Args[0] == "mel-report") {
+				data, err := sysmetrics.Collect()
+				if err != nil {
+					log.Errorf(utils.ErrFormat, err)
+					os.Exit(1)
+				}
+				fmt.Println(string(data))
+			} else {
+				if err := sysmetrics.CollectAndSend(sysmetrics.ReportInteractive, flagForce, flagServerURL); err != nil {
+					log.Errorf(utils.ErrFormat, err)
+					os.Exit(1)
+				}
 			}
 		},
 	}

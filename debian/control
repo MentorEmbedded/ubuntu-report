@@ -79,9 +79,11 @@ Built-Using: ${misc:Built-Using},
 Depends: ${shlibs:Depends},
          ${misc:Depends},
 Description: Report hardware and other collected metrics
- The tool will show you what is going to be reported and ask for your
- acknowledgement before uploading it. This information can't be used to
- identify a single machine and is presented before being sent to the server.
+ The tool will show you what would be reported.  You may optionally choose to
+ send the report to an upstream server, but unlike ubuntu-report, mel-report
+ does not do this by default and you must always specify the remote server
+ at the command line, the built-in server URL points to localhost and therefore
+ will never attempt to report any data outside the current system.
  .
  This package contains the command line tool.
  .
